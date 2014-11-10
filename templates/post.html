@@ -1,8 +1,15 @@
-{% extends "base.html"%}
-{% block content %}
-<h2>Essay</h2>
-<h3>{{ post.title }}</h3>
-<div>
-	{{ post.essay }}
+<div class="post">
+	<div class="post-heading">
+		<div class="post-title">
+			{{p.title}}
+		</div>
+
+		<div class="post-date">
+			{{p.created.strftime("%b %d, %Y")}}
+		</div>
+	</div>
+
+	<div class="post-content">
+		{{ p._render_text | safe }}
+	</div>
 </div>
-{% endblock %}
