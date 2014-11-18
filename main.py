@@ -8,9 +8,6 @@ template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 	autoescape = True)
 
-def blog_key(name = 'default'):
-	return db.Key.from_path('blogs', name)
-
 class Handler(webapp2.RequestHandler):
     def write(self,*a,**kw):
         self.response.out.write(*a,**kw)
@@ -56,7 +53,7 @@ class NewPost(Handler):
 		essay = self.request.get("essay")
 
 		if title and essay:
-			p = Post(parent=blog_key(),title = title, essay = essay)
+			p = Post(title = title, essay = essay)
 			p.put()
 			new_url = "/blog/"+ str(p.key().id())
 			self.redirect(new_url)
@@ -67,7 +64,7 @@ class NewPost(Handler):
 class ViewPost(Handler):
 	def get(self,url):
 		post_id = int(url)
-		key = db.Key.from_path('Post', post_id, parent=blog_key())
+		key = db.Key.from_path('Post', post_id)
 		post = db.get(key)
 		if post:
 			self.render("permalink.html",post=post)
