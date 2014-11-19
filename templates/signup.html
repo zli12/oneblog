@@ -4,13 +4,14 @@
 <h2>Sign up</h2>
 <form method="post">
 	<div>					
-	<label>Username</label>
-	<input type	="text" name="username" value="{{ username }}">
-	<div class="error">{{ unerror }}</div>
+		<label>Username</label>
+		<input type	="text" name="username" value="{{ username }}">
+		<div class="error">{{ unerror }}</div>
 	</div>
 	<div>
 		<label>Password</label>
 		<input type ="password" name = "password">
+		<div class="error">{{ pwerror }}</div>
 	</div>
 	<div>
 		<label>Verify Password</label>
@@ -19,7 +20,7 @@
 	</div>
 	<div>
 		<label>Email (optional)</label>
-		<input type	="text" name="username" value="{{ email }}">
+		<input type	="text" name="email" value="{{ email }}">
 	</div>
 	<input type="submit">
 </form>
